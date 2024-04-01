@@ -29,7 +29,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public void join() throws Exception{
-		logger.debug(" login() 호출");
+		logger.debug(" join() 호출");
+
+		
+	}
+	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public void main() throws Exception{
+		logger.debug(" main() 호출");
 
 		
 	}

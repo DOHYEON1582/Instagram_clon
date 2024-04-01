@@ -1,6 +1,8 @@
 @charset "UTF-8";
 body{
-	text-align: center;
+	margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 #container{
@@ -55,7 +57,39 @@ body{
 	font: bold;
 }
 
+.side-bar {
+	position: absolute;
+	margin:0px;
+    width: 330px; 
+    border-right:1px solid #dddddd;
+    color: black; 
+    height: 100vh; 
+    float: left; 
+}
 
+#main{
+	margin:0 auto;
+	margin-left:610px;
+	width: 640px;
+	height: auto;
+	align-items: center;
+}
 
+#storyDiv{
+	margin: 0;
+	border: 1px solid black;
+}
 
+#content{
+	margin: 0;
+	height: auto;
+	border-bottom: 1px solid black;
+}
+
+#post{
+	margin: 0;
+	margin-left:80px;
+	margin-right:80px;
+	border: 1px solid black;
+}
 
