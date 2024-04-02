@@ -93,3 +93,37 @@ body{
 	border: 1px solid black;
 }
 
+#mainImg{
+	width: 100px;
+	margin: 50px 35px;
+	float: left;
+	
+}
+
+#sideBar{
+	margin: 130px 20px;
+}
+
+.sideBarList{
+	text-align: left;
+	width: 280px;
+	height: 50px;
+	border-radius: 10px;
+	line-height: 50px;
+	
+}
+
+.sideBtn{
+	text-decoration: none;
+	color: black;
+	font-size: 15px;
+}
+
+.sideIcon{
+	float:left;
+	width: 30px;
+	margin: 10px 5px;
+}
+
+
+
