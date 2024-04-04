@@ -13,7 +13,8 @@
 <body>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		
+		// 사이드바 이벤트
 		$('.sideBarList').mouseover(function(){
 			$(this).css('backgroundColor','#f7f7f7');
 		});
@@ -21,12 +22,30 @@
 		      $(this).css("backgroundColor","#fff");
 		   });
 		
-	});
+		// 게시글 버튼
+		$('#createBoard').click(function(e){
+			e.preventDefault();
+			console.log("클릭됨");
+			$('.custom_modal').css('display','block');
+		});
+		
+		
+		
+		
+	});//document.ready
 
 
 </script>
 
+<!-- 모달창 -->
+<div class="custom_modal">
+	<div class="modal">
+     	<div class="modal_body">Modal</div>
+	</div>
+</div>
 
+
+<!-- 사이드바 -->
 
 <aside class="side-bar">
 	<div>
@@ -70,7 +89,7 @@
 	</a>
 </div>
 <div style="height: 60px;">
-	<a class="sideBtn" href="">
+	<a class="sideBtn" href="" id="createBoard">
 		<img class="sideIcon" src="https://cdn-icons-png.flaticon.com/128/6537/6537820.png">
 		<div class="sideBarList">만들기</div>
 	</a>
@@ -120,6 +139,8 @@
 	
 	
 </div>
+
+
 
 
 </body>
