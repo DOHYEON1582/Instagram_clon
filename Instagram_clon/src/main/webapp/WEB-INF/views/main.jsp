@@ -27,9 +27,51 @@
 			e.preventDefault();
 			console.log("클릭됨");
 			$('.custom_modal').css('display','block');
+			
 		});
 		
+		//모달창 닫기
+		function modalClose(){
+			$('.custom_modal').css('display','none');
+			$('#imgFile').attr('src',"");
+			$('#btnFile').css('display','');
+			$('#imgFile').css('display','none');
+		}
 		
+		$('#modalClose').click(function(){
+			$('.custom_closeModal').css('display','block');
+		});
+		
+		$('#closeCheck_true').click(function(){
+			modalClose();
+		});
+		
+
+		
+		// 사진 업로드 버튼
+		$('#btnFile').click(function(){
+			$('#imgFileInput').click();
+		});
+		
+		// 사진 미리보기 스크립트
+		$('#imgFileInput').change(function(){
+			
+			const fileDOM = document.querySelector('#imgFileInput');
+			// 업로드 사진의 URL을 가져와서 img src 위치에 삽입
+			const imageSrc = URL.createObjectURL(fileDOM.files[0]);
+			//console.log(imageSrc);
+			$('#imgFile').attr('src',imageSrc);
+			$('#btnFile').css('display','none');
+			$('#imgFile').css('display','block');
+			
+		});
+		
+		// 텍스트 길이 체크
+		$('#content_textarea').keyup(function(){
+			var txt = $('#content_textarea').val();
+			
+			$('#txt_length').text(0+txt.length);
+		});
 		
 		
 	});//document.ready
@@ -38,10 +80,45 @@
 </script>
 
 <!-- 모달창 -->
+<!-- 게시물 작성 모달 -->
 <div class="custom_modal">
 	<div class="modal">
-     	<div class="modal_body">Modal</div>
+	<a><img id="modalClose" src="https://cdn-icons-png.flaticon.com/128/151/151882.png"></a>
+     	<div class="modal_body">
+     		<div id="modalHeader">
+     			새 게시물 만들기
+     			<a id="modalWrite">공유하기</a>
+     		</div>
+
+     		<div id="modalImg">
+     			<img id="imgFile"  src="">
+     			<button id="btnFile">파일 업로드</button>
+     			<input id="imgFileInput" type="file" name="imgFile">
+     		</div>
+     		
+     		<div id="modalContent">
+     			<div id="modalContent1">아이디</div>
+     			<div id="modalContent2"><textarea id="content_textarea" rows="" cols="" placeholder="문구를 입력하세요.."></textarea></div>
+     			<div id="modalContent3"><label id="txt_length">0</label>/2000</div>
+     			<div id="modalContent4">위치추가</div>
+     			<div id="modalContent5">접근성</div>
+     			<div id="modalContent6">고급설정</div>
+     		</div>
+     	
+     	</div>
 	</div>
+</div>
+
+<!-- 게시물 작성 취소 모달 -->
+<div class="custom_closeModal">
+	<div class="closeCheck">
+		<div class="closeCheck_body">
+			<div id="closeCheck_body1">게시물을 삭제 하시겠어요?</div>
+			<a id="closeCheck_true" href=""><div id="closeCheck_body2">삭제</div></a>
+			<a id="closeCheck_true" href=""><div id="closeCheck_body3">취소</div></a>
+		</div>
+	</div>
+
 </div>
 
 
