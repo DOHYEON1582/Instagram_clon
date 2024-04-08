@@ -195,6 +195,7 @@ body{
 #btnFile{
 	background-color: rgb(76,181,249);
  	margin-top: 300px;
+ 	color: white;
 }
 
 #imgFile{
@@ -328,3 +329,16 @@ body{
 	font-size: 17px;
 	outline: none;
 }
+
+#locationTxt{
+	width: 50px;
+	height: 45px;
+	border: none;
+	outline: none;
+	font-size: 17px;
+}
+
+#locationList{
+	background-color: white;
+}
+

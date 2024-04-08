@@ -15,19 +15,29 @@
 	$(document).ready(function(){
 		
 		// 사이드바 이벤트
-		$('.sideBarList').mouseover(function(){
-			$(this).css('backgroundColor','#f7f7f7');
-		});
-		$('.sideBarList').mouseout(function(){
-		      $(this).css("backgroundColor","#fff");
-		   });
+		console.log($('.custom_modal').css('display'));
+		var mouseEvent = true;
 		
+
+		$('.sideBarList').mouseover(function(){
+			if(mouseEvent){
+				$(this).css('backgroundColor','#f7f7f7');
+			}
+		});
+		
+		$('.sideBarList').mouseout(function(){
+			if(mouseEvent){
+		  		$(this).css("backgroundColor","#fff");
+			}
+		});
+
 		// 게시글 버튼
 		$('#createBoard').click(function(e){
+			mouseEvent = false;
+			$('.sideBarList').css("backgroundColor","rgba(0, 0, 0, 0)");
 			e.preventDefault();
 			console.log("클릭됨");
 			$('.custom_modal').css('display','block');
-			
 		});
 		
 		//모달창 닫기
@@ -36,6 +46,7 @@
 			$('#imgFile').attr('src',"");
 			$('#btnFile').css('display','');
 			$('#imgFile').css('display','none');
+			mouseEvent = true;
 		}
 		
 		$('#modalClose').click(function(){
@@ -73,6 +84,40 @@
 			$('#txt_length').text(0+txt.length);
 		});
 		
+		// 위치태그 자동완성
+		
+		$('#locationTxt').keypress(function(){
+			$("#locationList").empty();
+			
+			$.ajax({
+				url : '/main/locationList/'+$('#locationTxt').val(),
+				type : "POST",
+				contentType : "application/json; charset=UTF-8",
+				success : function(data){
+					console.log(data);
+					if(data != null){
+						
+						$(data).each(function(i,item){
+							$("#locationList").append("<option>"+item.location+"</option>");
+						});
+					}
+				}
+			});
+		});
+		
+		//게시물 작성
+		$('#modalWrite').click(function(){
+			var PostVO = {
+					/* "userid" : ,
+					"content" : ,
+					"location" :  */
+			};
+			
+			
+		});
+		
+		
+		
 		
 	});//document.ready
 
@@ -87,9 +132,10 @@
      	<div class="modal_body">
      		<div id="modalHeader">
      			새 게시물 만들기
-     			<a id="modalWrite">공유하기</a>
+     			<a href="" id="modalWrite">공유하기</a>
      		</div>
-
+     		
+			
      		<div id="modalImg">
      			<img id="imgFile"  src="">
      			<button id="btnFile">파일 업로드</button>
@@ -97,10 +143,11 @@
      		</div>
      		
      		<div id="modalContent">
-     			<div id="modalContent1">아이디</div>
+     			<div id="modalContent1"><input style="width: 100%; height: 45px; border: none; outline: none; font-size: 17px;" id="userid" type="text" name="userid" value="아이디"></div>
      			<div id="modalContent2"><textarea id="content_textarea" rows="" cols="" placeholder="문구를 입력하세요.."></textarea></div>
      			<div id="modalContent3"><label id="txt_length">0</label>/2000</div>
-     			<div id="modalContent4">위치추가</div>
+     			<div id="modalContent4"><input list="locationList" style="width: 100%; height: 45px; border: none; outline: none; font-size: 17px;" id="locationTxt" type="text" name="location" placeholder="위치추가"> </div>
+     									<datalist id="locationList"></datalist>
      			<div id="modalContent5">접근성</div>
      			<div id="modalContent6">고급설정</div>
      		</div>
@@ -108,6 +155,7 @@
      	</div>
 	</div>
 </div>
+
 
 <!-- 게시물 작성 취소 모달 -->
 <div class="custom_closeModal">
